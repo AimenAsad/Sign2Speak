@@ -1,0 +1,15 @@
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+sign2speak_new_env/
+.idea/
+.vscode/
+.DS_Store
+data/
+models/
+
