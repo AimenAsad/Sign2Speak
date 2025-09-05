@@ -12,8 +12,10 @@ ACTIONS_PATH = "processed_data/asl_alphabet_actions.npy"
 
 @st.cache_resource
 def load_model_cached(path=MODEL_PATH):
-    model = load_model(path)
+    model = build_model()   # function where you define your CNN/LSTM etc.
+    model.load_weights(path)
     return model
+
 
 @st.cache_resource
 def get_mediapipe():
