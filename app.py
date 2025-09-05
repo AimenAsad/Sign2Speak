@@ -12,8 +12,7 @@ ACTIONS_PATH = "processed_data/asl_alphabet_actions.npy"
 
 @st.cache_resource
 def load_model_cached(path=MODEL_PATH):
-    model = build_model()   # function where you define your CNN/LSTM etc.
-    model.load_weights(path)
+    model = load_model(path)
     return model
 
 
