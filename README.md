@@ -1,5 +1,5 @@
 ✋ Sign2Speak
-<br>
+
 Sign2Speak is a deep learning–powered application that translates American Sign Language (ASL) alphabet signs into text and speech in real time. The app uses MediaPipe for hand landmark detection and a CNN/LSTM model (trained on ASL alphabet dataset) for classification, all wrapped inside a Streamlit interface.
 
 🚀 Features
@@ -35,12 +35,12 @@ Install dependencies
 pip install -r requirements.txt
 
 ⚠️ Make sure your TensorFlow & Keras versions match the one used for training (example below).
-streamlit==1.32.0
-tensorflow==2.12.0
-keras==2.12.0
-opencv-python-headless==4.8.1.78
-numpy==1.26.4
-mediapipe==0.10.9
+streamlit==1.32.0<br>
+tensorflow==2.12.0<br>
+keras==2.12.0<br>
+opencv-python-headless==4.8.1.78<br>
+numpy==1.26.4<br>
+mediapipe==0.10.9<br>
 
 ▶️ Usage
 Run the Streamlit app
