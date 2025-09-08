@@ -15,7 +15,6 @@ def load_model_cached(path=MODEL_PATH):
     model = load_model(path)
     return model
 
-
 @st.cache_resource
 def get_mediapipe():
     mp_hands = mp.solutions.hands
