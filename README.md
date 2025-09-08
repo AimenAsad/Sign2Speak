@@ -1,7 +1,7 @@
 ✋ Sign2Speak
-
+<br>
 Sign2Speak is a deep learning–powered application that translates American Sign Language (ASL) alphabet signs into text and speech in real time. The app uses MediaPipe for hand landmark detection and a CNN/LSTM model (trained on ASL alphabet dataset) for classification, all wrapped inside a Streamlit interface.
-
+<br>
 🚀 Features
 
 Real-time ASL recognition using webcam
