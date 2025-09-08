@@ -20,28 +20,6 @@ Sign2Speak/
 │── requirements.txt<br>
 │── README.md<br>
 
-⚙️ Installation
-
-Clone the repository
-git clone https://github.com/yourusername/Sign2Speak.git
-cd Sign2Speak
-
-Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-
-Install dependencies
-pip install -r requirements.txt
-
-⚠️ Make sure your TensorFlow & Keras versions match the one used for training (example below).
-streamlit==1.32.0<br>
-tensorflow==2.12.0<br>
-keras==2.12.0<br>
-opencv-python-headless==4.8.1.78<br>
-numpy==1.26.4<br>
-mediapipe==0.10.9<br>
-
 ▶️ Usage
 Run the Streamlit app
 streamlit run app.py
