@@ -6,33 +6,68 @@ from tensorflow.keras.models import load_model
 
 # --- Load Trained Model ---
 MODEL_PATH = "models/model_alphabet.h5"
-model = load_model(MODEL_PATH)
+@st.cache_resource 
+def load_sign2speak_model():
+    return load_model(MODEL_PATH)
+model = load_sign2speak_model()
 
 # --- Load Actions (Alphabet Classes) ---
 actions = np.load("processed_data/asl_alphabet_actions.npy")
 
 # --- Mediapipe Hands ---
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.6, min_tracking_confidence=0.6)
 mp_drawing = mp.solutions.drawing_utils
 
-# --- Streamlit UI ---
-st.title("✋ Sign2Speak - ASL Alphabet Recognition")
-st.markdown("Show an ASL alphabet sign to the camera and see the prediction in real-time.")
+# --- Streamlit Page Config ---
+st.set_page_config(page_title="Sign2Speak", page_icon="✋", layout="centered")
 
-# Session state for camera control
+# --- Custom CSS ---
+st.markdown("""
+    <style>
+        .title {
+            text-align: center;
+            font-size: 36px !important;
+            font-weight: bold;
+            color: #2E86C1;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 18px !important;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .prediction-box {
+            padding: 15px;
+            border-radius: 12px;
+            background: #f0f2f6;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2C3E50;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# --- Title & Subtitle ---
+st.markdown('<p class="title">✋ Sign2Speak - ASL Alphabet Recognition</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Show an ASL alphabet sign to the camera and see the prediction in real-time</p>', unsafe_allow_html=True)
+
+# --- Camera Controls ---
 if "run_camera" not in st.session_state:
     st.session_state.run_camera = False
 
-# Buttons
-col1, col2 = st.columns(2)
-with col1:
-    if st.button("▶️ Start Camera"):
+start_col, stop_col = st.columns([1, 1])
+with start_col:
+    if st.button("▶️ Start Camera", use_container_width=True):
         st.session_state.run_camera = True
-with col2:
-    if st.button("⏹ Stop Camera"):
+with stop_col:
+    if st.button("⏹ Stop Camera", use_container_width=True):
         st.session_state.run_camera = False
 
+# --- Placeholders ---
 frame_placeholder = st.empty()
 pred_placeholder = st.empty()
 
@@ -43,7 +78,7 @@ if st.session_state.run_camera:
     while st.session_state.run_camera:
         ret, frame = cap.read()
         if not ret:
-            st.error("Failed to access webcam.")
+            st.error("⚠️ Failed to access webcam.")
             break
 
         # Flip and convert
@@ -64,12 +99,11 @@ if st.session_state.run_camera:
         pred_class = actions[np.argmax(prediction)]
         confidence = np.max(prediction)
 
-        # Show prediction
-        cv2.putText(frame, f"{pred_class} ({confidence:.2f})", (10, 40),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-        # Streamlit display
-        frame_placeholder.image(frame, channels="BGR")
-        pred_placeholder.write(f"### Prediction: **{pred_class}** (confidence: {confidence:.2f})")
+        # Display in Streamlit
+        frame_placeholder.image(frame, channels="BGR", use_container_width=True)
+        pred_placeholder.markdown(
+            f'<div class="prediction-box">Prediction: <span style="color:#27AE60">{pred_class}</span><br>Confidence: {confidence:.2f}</div>',
+            unsafe_allow_html=True
+        )
 
     cap.release()
