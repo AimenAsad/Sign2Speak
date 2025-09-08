@@ -4,14 +4,14 @@ Sign2Speak is a deep learning–powered application that translates American Sig
 
 🚀 Features
 
-Real-time ASL recognition using webcam
-Hand landmark extraction powered by MediaPipe
-Deep learning model (CNN/LSTM) trained on ASL alphabet
-Text-to-Speech (TTS) to vocalize recognized signs
+Real-time ASL recognition using webcam<br>
+Hand landmark extraction powered by MediaPipe<br>
+Deep learning model (CNN/LSTM) trained on ASL alphabet<br>
+Text-to-Speech (TTS) to vocalize recognized signs<br>
 Streamlit web app for easy deployment & interaction
 
 📂 Project Structure
-Sign2Speak/
+Sign2Speak/<br>
 │── app.py<br>                    
 │── models/<br>
 │   └── model_alphabet.h5 <br>    
@@ -20,41 +20,33 @@ Sign2Speak/
 │── requirements.txt<br>
 │── README.md<br>
 
-▶️ Usage
-Run the Streamlit app
-streamlit run app.py
-
-The browser will open automatically.
-Grant camera access to the app.
-Start signing! The recognized alphabet will appear on the screen and be spoken out loud.
-
 🧠 Model Details
 
-The model is a CNN + LSTM hybrid trained on ASL alphabet dataset.
-Input: 21 hand landmarks (x,y,z) from MediaPipe
-Output: 26 classes (A–Z)
+The model is a CNN + LSTM hybrid trained on ASL alphabet dataset.<br>
+Input: 21 hand landmarks (x,y,z) from MediaPipe.<br>
+Output: 26 classes (A–Z)<br>
 Saved in .h5 format (models/model_alphabet.h5).
 
 
 📊 Example Workflow
 
-Capture Frame from webcam
-Extract Landmarks using MediaPipe Hands
-Preprocess Sequence into fixed length input
-Predict Alphabet with trained CNN/LSTM
-Display Output with Streamlit
+Capture Frame from webcam<br>
+Extract Landmarks using MediaPipe Hands<br>
+Preprocess Sequence into fixed length input<br>
+Predict Alphabet with trained CNN/LSTM<br>
+Display Output with Streamlit<br>
 
 📌 Roadmap / Future Improvements
 
-Extend to full words & sentences
-Support multiple signers
-Add multi-language TTS support
+Extend to full words & sentences<br>
+Support multiple signers<br>
+Add multi-language TTS support<br>
 Deploy on Streamlit Cloud / HuggingFace Spaces
 
 🤝 Contributing
 
-Contributions are welcome!
-Fork the repo
-Create a new branch (feature/new-feature)
-Commit changes
+Contributions are welcome!<br>
+Fork the repo<br>
+Create a new branch (feature/new-feature)<br>
+Commit changes<br>
 Open a Pull Request
