@@ -13,9 +13,9 @@ Streamlit web app for easy deployment & interaction
 📂 Project Structure
 Sign2Speak/<br>
 │── app.py<br>                    
-│── models/
+│── models<br>
 │   └── model_alphabet.h5 <br>    
-│── processed_data/
+│── processed_data<br>
 │   └── asl_alphabet_actions.npy<br> 
 │── requirements.txt<br>
 │── README.md<br>
